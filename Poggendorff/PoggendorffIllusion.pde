@@ -37,20 +37,22 @@ class PoggendorffIllusion {
     return mode;
   }
 
-  void draw() {
-    background(255);
-    pushMatrix();
-    translate(width / 2, (height - barHeight) / 2);
-    pushStyle();
-    stroke(0);
-    strokeWeight(2);
-    line(0, barHeight / 2, -lineProjectedLength, 0);
-    line(endPointX, barHeight / 2, lineProjectedLength + endPointX, barHeight);
-    strokeWeight(1);
-    fill(255);
-    rect(-barWidth / 2, 0, barWidth, barHeight);
-    popMatrix();
-    popStyle();
+  void draw(PGraphics pg) {
+    pg.beginDraw();
+    pg.background(255);
+    pg.pushMatrix();
+    pg.translate(pg.width / 2, (pg.height - barHeight) / 2);
+    pg.pushStyle();
+    pg.stroke(0);
+    pg.strokeWeight(2);
+    pg.line(0, barHeight / 2, -lineProjectedLength, 0);
+    pg.line(endPointX, barHeight / 2, lineProjectedLength + endPointX, barHeight);
+    pg.strokeWeight(1);
+    pg.fill(255);
+    pg.rect(-barWidth / 2, 0, barWidth, barHeight);
+    pg.popMatrix();
+    pg.popStyle();
+    pg.endDraw();
   }
 
   void keyPressed() {

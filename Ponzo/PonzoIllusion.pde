@@ -34,39 +34,41 @@ class PonzoIllusion {
     return mode;
   }
 
-  void draw() {
-    background(255);
-    pushMatrix();
-    translate(10, 50);
-    pushStyle();
-    textAlign(CENTER, CENTER);
-    textSize(16);
-    stroke(0);
-    noFill();
-    smooth();
+  void draw(PGraphics pg) {
+    pg.beginDraw();
+    pg.background(255);
+    pg.pushMatrix();
+    pg.translate(10, 50);
+    pg.pushStyle();
+    pg.textAlign(CENTER, CENTER);
+    pg.textSize(16);
+    pg.stroke(0);
+    pg.noFill();
+    pg.smooth();
 
-    strokeWeight(2);
-    line(0, 0, width, 0);
+    pg.strokeWeight(2);
+    pg.line(0, 0, pg.width, 0);
     if (mode > 0) {
-      line(0, 200, width, 200);
+      pg.line(0, 200, pg.width, 200);
     } else {
-      line(0, 0, cos(angle) * width, sin(angle) * width);
+      pg.line(0, 0, cos(angle) * pg.width, sin(angle) * pg.width);
     }
 
-    ellipse(cos(angle / 2) * AX, sin(angle / 2) * AX, radiusA, radiusA);
-    fill(0);
-    noStroke();
-    text("A", cos(angle / 2) * AX, -20);
+    pg.ellipse(cos(angle / 2) * AX, sin(angle / 2) * AX, radiusA, radiusA);
+    pg.fill(0);
+    pg.noStroke();
+    pg.text("A", cos(angle / 2) * AX, -20);
 
-    stroke(0);
-    noFill();
-    ellipse(cos(angle / 2) * BX, sin(angle / 2) * BX, radiusB, radiusB);
-    fill(0);
-    noStroke();
-    text("B", cos(angle / 2) * BX, -20);
+    pg.stroke(0);
+    pg.noFill();
+    pg.ellipse(cos(angle / 2) * BX, sin(angle / 2) * BX, radiusB, radiusB);
+    pg.fill(0);
+    pg.noStroke();
+    pg.text("B", cos(angle / 2) * BX, -20);
 
-    popMatrix();
-    popStyle();
+    pg.popMatrix();
+    pg.popStyle();
+    pg.endDraw();
   }
 
   void keyPressed() {

@@ -33,43 +33,45 @@ class ZollnerIllusion {
     return mode;
   }
 
-  void draw() {
-    background(255);
-    pushMatrix();
-    translate(-30, 25);
+  void draw(PGraphics pg) {
+    pg.beginDraw();
+    pg.background(255);
+    pg.pushMatrix();
+    pg.translate(-30, 25);
 
-    pushStyle();
-    textAlign(CENTER, CENTER);
-    textSize(16);
-    stroke(0);
-    strokeWeight(8);
-    fill(0);
-    smooth();
+    pg.pushStyle();
+    pg.textAlign(CENTER, CENTER);
+    pg.textSize(16);
+    pg.stroke(0);
+    pg.strokeWeight(8);
+    pg.fill(0);
+    pg.smooth();
 
     for (int i=0; i<4; i++) {
-      line(i * lineInterval - slantB, 0, i * lineInterval + slantB, height - 50);
+      pg.line(i * lineInterval - slantB, 0, i * lineInterval + slantB, pg.height - 50);
       if (mode == 0) {
-        for (int y = 10; y < height - 50; y += 30) {
-          int x = i * lineInterval - slantB + (slantB * 2) * y / (height - 50);
+        for (int y = 10; y < pg.height - 50; y += 30) {
+          int x = i * lineInterval - slantB + (slantB * 2) * y / (pg.height - 50);
           int d = round(random(-5, 5));
-          line(x - wingLength + d, y, x + wingLength + d, y);
+          pg.line(x - wingLength + d, y, x + wingLength + d, y);
         }
       }
     }
 
-    translate(lineInterval / 2, 0);
+    pg.translate(lineInterval / 2, 0);
     for (int i=0; i<4; i++) {
-      line(i * lineInterval - slantA, 0, i * lineInterval + slantA, height - 50);
+      pg.line(i * lineInterval - slantA, 0, i * lineInterval + slantA, pg.height - 50);
       if (mode == 0) {
-        for (int y = 10; y < height - 50; y += 30) {
-          int x = i * lineInterval - slantA + (slantA * 2) * y / (height - 50);
+        for (int y = 10; y < pg.height - 50; y += 30) {
+          int x = i * lineInterval - slantA + (slantA * 2) * y / (pg.height - 50);
           int d = round(random(-5, 5));
-          line(x, y - wingLength + d, x, y + wingLength + d);
+          pg.line(x, y - wingLength + d, x, y + wingLength + d);
         }
       }
     }
-    popMatrix();
-    popStyle();
+    pg.popMatrix();
+    pg.popStyle();
+    pg.endDraw();
   }
 
   void keyPressed() {

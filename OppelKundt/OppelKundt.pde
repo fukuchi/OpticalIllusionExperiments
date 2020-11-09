@@ -23,7 +23,7 @@ void keyPressed() {
   } else if (key == '2') {
     illusion.setMode(1);
   } else if (key == 's') {
-    String filename = String.format("%s-%d.%02d.png", title, illusion.getMode(), illusion.getValue(), illusion.getMaxValue());
+    String filename = String.format("%s-%d.%02d.png", title, illusion.getMode() + 1, illusion.getValue(), illusion.getMaxValue());
     canvas.save(filename);
   } else {
     illusion.keyPressed();

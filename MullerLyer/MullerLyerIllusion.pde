@@ -37,42 +37,45 @@ class MullerLyerIllusion {
     return mode;
   }
 
-  void draw() {
-    background(255);
+  void draw(PGraphics pg) {
+    pg.beginDraw();
+    pg.background(255);
 
-    pushStyle();
-    textAlign(CENTER, CENTER);
-    textSize(16);
+    pg.pushStyle();
+    pg.textAlign(CENTER, CENTER);
+    pg.textSize(16);
+    pg.strokeWeight(2);
 
-    pushMatrix();
-    translate(0, 133);
-    stroke(0);
-    int endPoint1 = (width - arrowLengthA) / 2;
+    pg.pushMatrix();
+    pg.translate(0, 133);
+    pg.stroke(0);
+    int endPoint1 = (pg.width - arrowLengthA) / 2;
     int endPoint2 = endPoint1 + arrowLengthA;
-    line(endPoint1, 0, endPoint2, 0);
-    line(endPoint1, 0, endPoint1 - wingWidth, -wingWidth);
-    line(endPoint1, 0, endPoint1 - wingWidth, wingWidth);
-    line(endPoint2, 0, endPoint2 + wingWidth, -wingWidth);
-    line(endPoint2, 0, endPoint2 + wingWidth, wingWidth);
-    noStroke();
-    text("A", (width - arrowLengthA) / 2, 30);
-    popMatrix();
+    pg.line(endPoint1, 0, endPoint2, 0);
+    pg.line(endPoint1, 0, endPoint1 - wingWidth, -wingWidth);
+    pg.line(endPoint1, 0, endPoint1 - wingWidth, wingWidth);
+    pg.line(endPoint2, 0, endPoint2 + wingWidth, -wingWidth);
+    pg.line(endPoint2, 0, endPoint2 + wingWidth, wingWidth);
+    pg.noStroke();
+    pg.text("A", (pg.width - arrowLengthA) / 2, 30);
+    pg.popMatrix();
 
-    pushMatrix();
-    translate(0, 266);
-    stroke(0);
-    endPoint1 = (width - arrowLengthB) / 2;
+    pg.pushMatrix();
+    pg.translate(0, 266);
+    pg.stroke(0);
+    endPoint1 = (pg.width - arrowLengthB) / 2;
     endPoint2 = endPoint1 + arrowLengthB;
-    line(endPoint1, 0, endPoint2, 0);
-    line(endPoint1, 0, endPoint1 + wingWidth, -wingWidth);
-    line(endPoint1, 0, endPoint1 + wingWidth, wingWidth);
-    line(endPoint2, 0, endPoint2 - wingWidth, -wingWidth);
-    line(endPoint2, 0, endPoint2 - wingWidth, wingWidth);
-    noStroke();
-    text("B", (width - arrowLengthB) / 2, 30);
-    popMatrix();
+    pg.line(endPoint1, 0, endPoint2, 0);
+    pg.line(endPoint1, 0, endPoint1 + wingWidth, -wingWidth);
+    pg.line(endPoint1, 0, endPoint1 + wingWidth, wingWidth);
+    pg.line(endPoint2, 0, endPoint2 - wingWidth, -wingWidth);
+    pg.line(endPoint2, 0, endPoint2 - wingWidth, wingWidth);
+    pg.noStroke();
+    pg.text("B", (pg.width - arrowLengthB) / 2, 30);
+    pg.popMatrix();
 
-    popStyle();
+    pg.popStyle();
+    pg.endDraw();
   }
 
   void keyPressed() {

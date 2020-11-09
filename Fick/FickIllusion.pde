@@ -32,36 +32,37 @@ class FickIllusion {
     return mode;
   }
 
-  void draw() {
-    background(255);
-    pushMatrix();
-    translate(0, 50);
+  void draw(PGraphics pg) {
+    pg.beginDraw();
+    pg.background(255);
+    pg.pushMatrix();
+    pg.translate(0, 50);
 
-    pushStyle();
-    textAlign(CENTER, CENTER);
-    textSize(16);
+    pg.pushStyle();
+    pg.textAlign(CENTER, CENTER);
+    pg.textSize(16);
 
-    fill(255);
-    stroke(0);
-    rect((width - barLengthA) / 2, 0, barLengthA, barThickness);
-    fill(0);
-    noStroke();
-    text("A", (width - barLengthA) / 2 + 10, barThickness / 2);
+    pg.fill(255);
+    pg.stroke(0);
+    pg.rect((pg.width - barLengthA) / 2, 0, barLengthA, barThickness);
+    pg.fill(0);
+    pg.noStroke();
+    pg.text("A", (pg.width - barLengthA) / 2 + 10, barThickness / 2);
 
-    fill(255);
-    stroke(0);
-    pushMatrix();
+    pg.fill(255);
+    pg.stroke(0);
     if (mode > 0) {
-      translate((width + barLengthA) / 2 + barThickness / 2, barThickness);
+      pg.translate((pg.width + barLengthA) / 2 + barThickness / 2, barThickness);
     } else {
-      translate(width / 2, barThickness);
+      pg.translate(pg.width / 2, barThickness);
     }
-    rect(-barThickness / 2, 0, barThickness, barLengthB);
-    fill(0);
-    noStroke();
-    text("B", 0, 20);
-    popMatrix();
-    popStyle();
+    pg.rect(-barThickness / 2, 0, barThickness, barLengthB);
+    pg.fill(0);
+    pg.noStroke();
+    pg.text("B", 0, 20);
+    pg.popMatrix();
+    pg.popStyle();
+    pg.endDraw();
   }
 
   void keyPressed() {
