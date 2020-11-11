@@ -3,8 +3,8 @@ final String title="Shepard";
 PGraphics canvas;
 
 void setup() {
-  //fullScreen();
-  size(590, 400);
+  fullScreen();
+  //size(590, 400);
   background(255);
   canvas = createGraphics(590, 400);
   surface.setTitle(title);
