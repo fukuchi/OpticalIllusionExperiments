@@ -37,6 +37,7 @@ void draw() {
     noStroke();
     textAlign(CENTER, TOP);
     text("Subject No. " + experiment.currentSubjectNumber(), width / 2, 0);
+    text("Mode: " + (illusion.getMode() + 1), width / 2, 20);
     experiment.draw(canvas);
   } else {
     illusion.draw(canvas);

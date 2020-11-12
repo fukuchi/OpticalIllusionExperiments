@@ -79,14 +79,6 @@ class MullerLyerIllusion implements Illusion {
       pg.textAlign(LEFT, TOP);
       pg.text(hash, 0, 0);
     }
-    if (experimentMode) {
-      pushStyle();
-      textSize(12);
-      noStroke();
-      fill(0);
-      textAlign(CENTER, TOP);
-      text("Mode: " + (mode + 1), width / 2, 20);
-    }
     pg.endDraw();
   }
 
@@ -99,7 +91,7 @@ class MullerLyerIllusion implements Illusion {
   }
 
   void recordCurrentValues(Experiment experiment) {
-    experiment.appendResult(mode, arrowLengthA, arrowLengthB);
+    experiment.appendResult(mode + 1, arrowLengthA, arrowLengthB);
   }
 
   void keyPressed() {
