@@ -1,4 +1,4 @@
-class MullerLyerIllusion {
+class MullerLyerIllusion implements Illusion {
   final int maxValue = 10;
   int value;
 
@@ -71,6 +71,22 @@ class MullerLyerIllusion {
     pg.popMatrix();
 
     pg.popStyle();
+    if (showHashCode) {
+      String hash = String.format("%08x", String.format("%s-%02d%02d-meaningless-string", title, mode, value).hashCode());
+      pg.textSize(12);
+      pg.noStroke();
+      pg.fill(0);
+      pg.textAlign(LEFT, TOP);
+      pg.text(hash, 0, 0);
+    }
+    if (experimentMode) {
+      pushStyle();
+      textSize(12);
+      noStroke();
+      fill(0);
+      textAlign(CENTER, TOP);
+      text("Mode: " + (mode + 1), width / 2, 20);
+    }
     pg.endDraw();
   }
 
@@ -80,6 +96,10 @@ class MullerLyerIllusion {
     stroke(0);
     text("Length A: " + arrowLengthA + " px", 0, 0);
     text("Length B: " + arrowLengthB + " px", 0, 20);
+  }
+
+  void recordCurrentValues(Experiment experiment) {
+    experiment.appendResult(mode, arrowLengthA, arrowLengthB);
   }
 
   void keyPressed() {
