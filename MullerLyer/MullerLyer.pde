@@ -1,6 +1,10 @@
+boolean showParameters = true;
+boolean experimentMode = true;
+
 MullerLyerIllusion illusion;
 final String title="Muller-Lyer";
 PGraphics canvas;
+Experiment experiment;
 
 void setup() {
   fullScreen();
@@ -10,9 +14,14 @@ void setup() {
   surface.setTitle(title);
 
   illusion = new MullerLyerIllusion();
+  experiment = new Experiment();
 }
 
 void draw() {
+  if (showParameters) {
+    background(255);
+    illusion.drawParameters();
+  }
   illusion.draw(canvas);
   image(canvas, (width - canvas.width) / 2, (height - canvas.height) / 2);
   noLoop();

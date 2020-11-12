@@ -56,8 +56,6 @@ class MullerLyerIllusion {
     pg.line(endPoint1, 0, endPoint1 - wingWidth, wingWidth);
     pg.line(endPoint2, 0, endPoint2 + wingWidth, -wingWidth);
     pg.line(endPoint2, 0, endPoint2 + wingWidth, wingWidth);
-    pg.noStroke();
-    pg.text("A", (pg.width - arrowLengthA) / 2, 30);
     pg.popMatrix();
 
     pg.pushMatrix();
@@ -70,12 +68,18 @@ class MullerLyerIllusion {
     pg.line(endPoint1, 0, endPoint1 + wingWidth, wingWidth);
     pg.line(endPoint2, 0, endPoint2 - wingWidth, -wingWidth);
     pg.line(endPoint2, 0, endPoint2 - wingWidth, wingWidth);
-    pg.noStroke();
-    pg.text("B", (pg.width - arrowLengthB) / 2, 30);
     pg.popMatrix();
 
     pg.popStyle();
     pg.endDraw();
+  }
+
+  void drawParameters() {
+    textAlign(LEFT, TOP);
+    fill(0);
+    stroke(0);
+    text("Length A: " + arrowLengthA + " px", 0, 0);
+    text("Length B: " + arrowLengthB + " px", 0, 20);
   }
 
   void keyPressed() {
