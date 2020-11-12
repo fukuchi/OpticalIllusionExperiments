@@ -53,7 +53,7 @@ void keyPressed() {
   } else if (key == 's') {
     String filename = String.format("%s-%d.%02d.png", title, illusion.getMode() + 1, illusion.getValue(), illusion.getMaxValue());
     canvas.save(filename);
-  } else if (key == ' ') {
+  } else if (key == ' ' && experimentMode) {
     experiment.nextPhase();
   } else {
     illusion.keyPressed();

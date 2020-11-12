@@ -9,8 +9,8 @@ class Experiment {
     results = new Table();
     results.addColumn("Number");
     results.addColumn("Mode");
-    results.addColumn("Length A");
-    results.addColumn("Length B");
+    results.addColumn("A");
+    results.addColumn("B");
 
     filename = String.format("%s-results-%04d%02d%02d-%02d%02d%02d.csv", 
       title, year(), month(), day(), hour(), minute(), second());
@@ -74,8 +74,8 @@ class Experiment {
     TableRow row = results.addRow();
     row.setInt("Number", subjectsNum);
     row.setInt("Mode", mode);
-    row.setInt("Length A", valueA);
-    row.setInt("Length B", valueB);
+    row.setInt("A", valueA);
+    row.setInt("B", valueB);
   }
 
   void incrementSubjectNumber() {
