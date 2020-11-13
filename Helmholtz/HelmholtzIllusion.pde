@@ -1,4 +1,4 @@
-class HelmholtzIllusion {
+class HelmholtzIllusion implements Illusion {
   final int maxValue = 10;
   int value;
   final int barWidth = 10;
@@ -9,6 +9,10 @@ class HelmholtzIllusion {
 
   HelmholtzIllusion() {
     widthA = barWidth * barNum;
+    randomize();
+  }
+
+  void randomize() {
     setValue(floor(random(-maxValue, maxValue)));
   }
 
@@ -55,8 +59,29 @@ class HelmholtzIllusion {
     pg.text("B", pg.width - 50, widthA / 2 + shiftY);
 
     pg.popMatrix();
+    if (showHashCode) {
+      String hash = String.format("%08x", String.format("%s-%02d%02d-meaningless-string", title, mode, value).hashCode());
+      pg.textSize(12);
+      pg.noStroke();
+      pg.fill(0);
+      pg.textAlign(LEFT, TOP);
+      pg.text(hash, 0, 0);
+    }
+
     pg.popStyle();
     pg.endDraw();
+  }
+
+  void drawParameters() {
+    textAlign(LEFT, TOP);
+    fill(0);
+    stroke(0);
+    text("Height A: " + widthA + " px", 0, 0);
+    text("Height B: " + widthB + " px", 0, 20);
+  }
+
+  void recordCurrentValues(Experiment experiment) {
+    experiment.appendResult(mode + 1, widthA, widthB);
   }
 
   void keyPressed() {
