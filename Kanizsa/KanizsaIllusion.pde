@@ -1,4 +1,4 @@
-class KanizsaIllusion {
+class KanizsaIllusion implements Illusion {
   final int maxValue = 10;
   int value;
   final int squareWidthA = 150;
@@ -7,11 +7,15 @@ class KanizsaIllusion {
   final int occluderHeightMode2 = 100;
   int occluderWidth;
   int occluderHeight;
-  int mode = 0;
+  int mode;
 
   KanizsaIllusion() {
-    setValue(floor(random(-maxValue, maxValue)));
     setMode(0);
+    randomize();
+  }
+
+  void randomize() {
+    setValue(floor(random(-maxValue, maxValue)));
   }
 
   int getValue() {
@@ -68,8 +72,29 @@ class KanizsaIllusion {
     pg.text("A", pg.width * 2 / 7, pg.height - 50);
     pg.text("B", pg.width * 5 / 7, pg.height - 50);
 
+    if (showHashCode) {
+      String hash = String.format("%08x", String.format("%s-%02d%02d-meaningless-string", title, mode, value).hashCode());
+      pg.textSize(12);
+      pg.noStroke();
+      pg.fill(0);
+      pg.textAlign(LEFT, TOP);
+      pg.text(hash, 0, 0);
+    }
+
     pg.popStyle();
     pg.endDraw();
+  }
+
+  void drawParameters() {
+    textAlign(LEFT, TOP);
+    fill(0);
+    stroke(0);
+    text("Width A: " + squareWidthA + " px", 0, 0);
+    text("Width B: " + squareWidthB + " px", 0, 20);
+  }
+
+  void recordCurrentValues(Experiment experiment) {
+    experiment.appendResult(mode + 1, squareWidthA, squareWidthB);
   }
 
   void keyPressed() {

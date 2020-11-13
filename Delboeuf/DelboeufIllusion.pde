@@ -1,13 +1,18 @@
-class DelboeufIllusion {
+class DelboeufIllusion implements Illusion {
   final int maxValue = 10;
   int value;
   final int radiusA = 60;
   int radiusB;
   final int outerRadiusL = 120;
   final int outerRadiusS = 70;
-  int mode = 0;
+  int mode;
 
   DelboeufIllusion() {
+    setMode(0);
+    randomize();
+  }
+
+  void randomize() {
     setValue(floor(random(-maxValue, maxValue)));
   }
 
@@ -61,6 +66,27 @@ class DelboeufIllusion {
     pg.popMatrix();
     pg.popStyle();
     pg.endDraw();
+
+    if (showHashCode) {
+      String hash = String.format("%08x", String.format("%s-%02d%02d-meaningless-string", title, mode, value).hashCode());
+      pg.textSize(12);
+      pg.noStroke();
+      pg.fill(0);
+      pg.textAlign(LEFT, TOP);
+      pg.text(hash, 0, 0);
+    }
+  }
+
+  void drawParameters() {
+    textAlign(LEFT, TOP);
+    fill(0);
+    stroke(0);
+    text("radius A: " + radiusA + " px", 0, 0);
+    text("radius B: " + radiusB + " px", 0, 20);
+  }
+
+  void recordCurrentValues(Experiment experiment) {
+    experiment.appendResult(mode + 1, radiusA, radiusB);
   }
 
   void keyPressed() {

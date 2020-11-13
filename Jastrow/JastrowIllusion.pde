@@ -1,18 +1,23 @@
-class JastrowIllusion {
+class JastrowIllusion implements Illusion {
   final int maxValue = 10;
   int value;
   final int arcRadius = 350;
   final int barWidth = 120;
   final float startAngle = 240;
-  final float endAngleA = 290;
-  float endAngleB;
+  final int endAngleA = 290;
+  int endAngleB;
   final int lengthA = 350;
   int lengthB;
   final float shiftAngle = -5;
   final float shiftX = 50;
-  int mode = 0;
+  int mode;
 
   JastrowIllusion() {
+    setMode(0);
+    randomize();
+  }
+
+  void randomize() {
     setValue(floor(random(-maxValue, maxValue)));
   }
 
@@ -40,17 +45,26 @@ class JastrowIllusion {
   }
 
   void draw(PGraphics pg) {
+    pg.beginDraw();
     if (mode == 0) {
       drawArcs(pg);
     } else {
       drawBars(pg);
     }
+    if (showHashCode) {
+      String hash = String.format("%08x", String.format("%s-%02d%02d-meaningless-string", title, mode, value).hashCode());
+      pg.textSize(12);
+      pg.noStroke();
+      pg.fill(0);
+      pg.textAlign(LEFT, TOP);
+      pg.text(hash, 0, 0);
+    }
+    pg.endDraw();
   }
 
   void drawArcs(PGraphics pg) {
     int x1, y1, x2, y2;
 
-    pg.beginDraw();
     pg.background(255);
     pg.pushStyle();
     pg.strokeWeight(2);
@@ -99,11 +113,9 @@ class JastrowIllusion {
 
     pg.popMatrix();
     pg.popStyle();
-    pg.endDraw();
   }
 
   void drawBars(PGraphics pg) {
-    pg.beginDraw();
     pg.background(255);
     pg.pushStyle();
     pg.strokeWeight(2);
@@ -132,7 +144,18 @@ class JastrowIllusion {
     pg.popMatrix();
 
     pg.popStyle();
-    pg.endDraw();
+  }
+
+  void drawParameters() {
+    textAlign(LEFT, TOP);
+    fill(0);
+    stroke(0);
+    text("Angle A: " + endAngleA + " px", 0, 0);
+    text("Angle B: " + endAngleB + " px", 0, 20);
+  }
+
+  void recordCurrentValues(Experiment experiment) {
+    experiment.appendResult(mode + 1, endAngleA, endAngleB);
   }
 
   void keyPressed() {

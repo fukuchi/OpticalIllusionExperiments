@@ -28,10 +28,12 @@ class Experiment {
     if (phase >= 5) phase = 0;
     if (phase == 1) {
       illusion.setMode(0);
+      illusion.randomize();
     } else if (phase == 2) {
       illusion.recordCurrentValues(experiment);
     } else if (phase == 3) {
       illusion.setMode(1);
+      illusion.randomize();
     } else if (phase == 4) {
       illusion.recordCurrentValues(experiment);
       incrementSubjectNumber();

@@ -4,9 +4,14 @@ class FickIllusion implements Illusion {
   final int barThickness = 40;
   final int barLengthA = 250;
   int barLengthB;
-  int mode = 0;
+  int mode;
 
   FickIllusion() {
+    setMode(0);
+    randomize();
+  }
+
+  void randomize() {
     setValue(floor(random(-maxValue, maxValue)));
   }
 

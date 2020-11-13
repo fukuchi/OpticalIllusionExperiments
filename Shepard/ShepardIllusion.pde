@@ -1,4 +1,4 @@
-class ShepardIllusion {
+class ShepardIllusion implements Illusion {
   final int maxValue = 10;
   int value;
   final int tableWA = 100;
@@ -8,17 +8,23 @@ class ShepardIllusion {
   final int slant = -30;
   final int tableBRotationAngle = 80;
   PVector[] tableA, tableB;
-  int mode = 0;
+  int mode;
 
   ShepardIllusion() {
     tableA = new PVector[4];
     tableB = new PVector[4];
-    setValue(floor(random(-maxValue, maxValue)));
 
     tableA[0] = new PVector(-tableWA / 2 - slant / 2, -tableD / 2);
     tableA[1] = new PVector( tableWA / 2 - slant / 2, -tableD / 2);
     tableA[2] = new PVector( tableWA / 2 + slant / 2, tableD / 2);
     tableA[3] = new PVector(-tableWA / 2 + slant / 2, tableD / 2);
+
+    setMode(0);
+    randomize();
+  }
+
+  void randomize() {
+    setValue(floor(random(-maxValue, maxValue)));
   }
 
   int getValue() {
@@ -113,8 +119,29 @@ class ShepardIllusion {
     pg.text("B", 0, pg.height / 2 - 30);
     pg.popMatrix();
 
+    if (showHashCode) {
+      String hash = String.format("%08x", String.format("%s-%02d%02d-meaningless-string", title, mode, value).hashCode());
+      pg.textSize(12);
+      pg.noStroke();
+      pg.fill(0);
+      pg.textAlign(LEFT, TOP);
+      pg.text(hash, 0, 0);
+    }
+
     pg.popStyle();
     pg.endDraw();
+  }
+
+  void drawParameters() {
+    textAlign(LEFT, TOP);
+    fill(0);
+    stroke(0);
+    text("Width A: " + tableWA + " px", 0, 0);
+    text("Width B: " + tableWB + " px", 0, 20);
+  }
+
+  void recordCurrentValues(Experiment experiment) {
+    experiment.appendResult(mode + 1, tableWA, tableWB);
   }
 
   void keyPressed() {

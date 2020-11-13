@@ -1,4 +1,4 @@
-class EbbinghausIllusion {
+class EbbinghausIllusion implements Illusion {
   final int maxValue = 10;
   int value;
   final int stimuliRadiusL = 80;
@@ -9,9 +9,14 @@ class EbbinghausIllusion {
   final int stimuliDistanceS = 60;
   final int centerRadiusA = 60;
   int centerRadiusB;
-  int mode = 0;
+  int mode;
 
   EbbinghausIllusion() {
+    setMode(0);
+    randomize();
+  }
+
+  void randomize() {
     setValue(floor(random(-maxValue, maxValue)));
   }
 
@@ -77,8 +82,28 @@ class EbbinghausIllusion {
     pg.text("B", 0, pg.height / 2 - 20);
     pg.popMatrix();
 
+    if (showHashCode) {
+      String hash = String.format("%08x", String.format("%s-%02d%02d-meaningless-string", title, mode, value).hashCode());
+      pg.textSize(12);
+      pg.noStroke();
+      pg.fill(0);
+      pg.textAlign(LEFT, TOP);
+      pg.text(hash, 0, 0);
+    }
     pg.popStyle();
     pg.endDraw();
+  }
+
+  void drawParameters() {
+    textAlign(LEFT, TOP);
+    fill(0);
+    stroke(0);
+    text("Radius A: " + centerRadiusA + " px", 0, 0);
+    text("Radius B: " + centerRadiusB + " px", 0, 20);
+  }
+
+  void recordCurrentValues(Experiment experiment) {
+    experiment.appendResult(mode + 1, centerRadiusA, centerRadiusB);
   }
 
   void keyPressed() {

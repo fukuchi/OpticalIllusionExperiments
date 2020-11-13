@@ -10,6 +10,11 @@ class MullerLyerIllusion implements Illusion {
   MullerLyerIllusion() {
     setValue(floor(random(-maxValue, maxValue)));
     setMode(0);
+    randomize();
+  }
+
+  void randomize() {
+    setValue(floor(random(-maxValue, maxValue)));
   }
 
   int getValue() {
@@ -19,7 +24,7 @@ class MullerLyerIllusion implements Illusion {
   void setValue(int v) {
     if (v < -maxValue || v > maxValue) return;
     value = v;
-    arrowLengthB = arrowLengthA + v * 5;
+    arrowLengthB = arrowLengthA + v * 4;
   }
 
   int getMaxValue() {
@@ -70,7 +75,6 @@ class MullerLyerIllusion implements Illusion {
     pg.line(endPoint2, 0, endPoint2 - wingWidth, wingWidth);
     pg.popMatrix();
 
-    pg.popStyle();
     if (showHashCode) {
       String hash = String.format("%08x", String.format("%s-%02d%02d-meaningless-string", title, mode, value).hashCode());
       pg.textSize(12);
@@ -79,6 +83,7 @@ class MullerLyerIllusion implements Illusion {
       pg.textAlign(LEFT, TOP);
       pg.text(hash, 0, 0);
     }
+    pg.popStyle();
     pg.endDraw();
   }
 

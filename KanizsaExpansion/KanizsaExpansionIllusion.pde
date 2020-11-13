@@ -1,15 +1,19 @@
-class KanizsaExpansionIllusion {
+class KanizsaExpansionIllusion implements Illusion {
   final int maxValue = 10;
   int value;
   final int rectangleWidthA = 100;
   int rectangleWidthB;
   final int adjacentBarWidth = 100;
   final int adjacentBarHeight = 150;
-  int mode = 0;
+  int mode;
 
   KanizsaExpansionIllusion() {
-    setValue(floor(random(-maxValue, maxValue)));
     setMode(0);
+    randomize();
+  }
+
+  void randomize() {
+    setValue(floor(random(-maxValue, maxValue)));
   }
 
   int getValue() {
@@ -51,16 +55,39 @@ class KanizsaExpansionIllusion {
 
     pg.translate(pg.width * 3 / 7, 0);
     pg.rect(-rectangleWidthB + rectangleWidthA / 2, -rectangleWidthA, rectangleWidthB, rectangleWidthA * 2);
-    pg.fill(192);
-    pg.rect(rectangleWidthA / 2, -adjacentBarHeight, adjacentBarWidth, adjacentBarHeight * 2);
+    if (mode == 0) {
+      pg.fill(192);
+      pg.rect(rectangleWidthA / 2, -adjacentBarHeight, adjacentBarWidth, adjacentBarHeight * 2);
+    }
 
     pg.popMatrix();
     pg.fill(0);
     pg.text("A", pg.width * 2 / 7, pg.height - 30);
     pg.text("B", pg.width * 5 / 7 + rectangleWidthA / 2, pg.height - 30);
 
+    if (showHashCode) {
+      String hash = String.format("%08x", String.format("%s-%02d%02d-meaningless-string", title, mode, value).hashCode());
+      pg.textSize(12);
+      pg.noStroke();
+      pg.fill(0);
+      pg.textAlign(LEFT, TOP);
+      pg.text(hash, 0, 0);
+    }
+
     pg.popStyle();
     pg.endDraw();
+  }
+
+  void drawParameters() {
+    textAlign(LEFT, TOP);
+    fill(0);
+    stroke(0);
+    text("Width A: " + rectangleWidthA + " px", 0, 0);
+    text("Width B: " + rectangleWidthB + " px", 0, 20);
+  }
+
+  void recordCurrentValues(Experiment experiment) {
+    experiment.appendResult(mode + 1, rectangleWidthA, rectangleWidthB);
   }
 
   void keyPressed() {

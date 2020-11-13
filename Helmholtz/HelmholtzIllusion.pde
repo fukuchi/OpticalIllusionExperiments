@@ -5,10 +5,11 @@ class HelmholtzIllusion implements Illusion {
   final int barNum = 15;
   int widthA, widthB;
   final int shiftY = 50;
-  int mode = 0;
+  int mode;
 
   HelmholtzIllusion() {
     widthA = barWidth * barNum;
+    setMode(0);
     randomize();
   }
 
