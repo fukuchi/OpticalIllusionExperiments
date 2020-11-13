@@ -26,8 +26,10 @@ class Experiment {
   void nextPhase() {
     phase++;
     if (phase >= 5) phase = 0;
-    if (phase == 1) {
+    if (phase == 0) {
+      incrementSubjectNumber();
       illusion.setMode(0);
+    } else if (phase == 1) {
       illusion.randomize();
     } else if (phase == 2) {
       illusion.recordCurrentValues(experiment);
@@ -36,7 +38,6 @@ class Experiment {
       illusion.randomize();
     } else if (phase == 4) {
       illusion.recordCurrentValues(experiment);
-      incrementSubjectNumber();
       saveAsCSV();
     }
   }
