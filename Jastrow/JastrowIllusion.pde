@@ -150,8 +150,8 @@ class JastrowIllusion implements Illusion {
     textAlign(LEFT, TOP);
     fill(0);
     stroke(0);
-    text("Angle A: " + endAngleA + " px", 0, 0);
-    text("Angle B: " + endAngleB + " px", 0, 20);
+    text("Angle A: " + endAngleA + " deg", 0, 0);
+    text("Angle B: " + endAngleB + " deg", 0, 20);
   }
 
   void recordCurrentValues(Experiment experiment) {
