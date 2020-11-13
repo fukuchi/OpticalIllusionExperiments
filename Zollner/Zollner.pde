@@ -1,4 +1,4 @@
-boolean experimentMode = false;
+boolean experimentMode = true;
 boolean showHashCode = false;
 boolean showParameters = true;
 

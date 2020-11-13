@@ -1,8 +1,8 @@
 class ZollnerIllusion implements Illusion {
   final int maxValue = 10;
   int value;
-  final int slantA = 200;
-  int slantB;
+  final float angleA = 40;
+  float angleB;
   final int lineInterval = 200;
   final int wingLength = 25;
   int mode;
@@ -23,7 +23,7 @@ class ZollnerIllusion implements Illusion {
   void setValue(int v) {
     if (v < -maxValue || v > maxValue) return;
     value = v;
-    slantB = slantA + v * 2;
+    angleB = angleA + (float)v * 0.5;
   }
 
   int getMaxValue() {
@@ -51,6 +51,9 @@ class ZollnerIllusion implements Illusion {
     pg.strokeWeight(8);
     pg.fill(0);
     pg.smooth();
+
+    int slantA = round((pg.height - 50) * tan(radians(angleA)) / 2);
+    int slantB = round((pg.height - 50) * tan(radians(angleB)) / 2);
 
     for (int i=0; i<4; i++) {
       pg.line(i * lineInterval - slantB, 0, i * lineInterval + slantB, pg.height - 50);
@@ -92,12 +95,12 @@ class ZollnerIllusion implements Illusion {
     textAlign(LEFT, TOP);
     fill(0);
     stroke(0);
-    text("Slant A: " + slantA + " px", 0, 0);
-    text("Slant B: " + slantB + " px", 0, 20);
+    text("Angle A: " + angleA + " deg", 0, 0);
+    text("Angle B: " + angleB + " deg", 0, 20);
   }
 
   void recordCurrentValues(Experiment experiment) {
-    experiment.appendResult(mode + 1, slantA, slantB);
+    experiment.appendResult(mode + 1, angleA, angleB);
   }
 
   void keyPressed() {

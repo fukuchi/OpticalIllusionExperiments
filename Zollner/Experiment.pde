@@ -73,12 +73,12 @@ class Experiment {
     canvas.endDraw();
   }
 
-  void appendResult(int mode, int valueA, int valueB) {
+  void appendResult(int mode, float valueA, float valueB) {
     TableRow row = results.addRow();
     row.setInt("Number", subjectsNum);
     row.setInt("Mode", mode);
-    row.setInt("A", valueA);
-    row.setInt("B", valueB);
+    row.setFloat("A", valueA);
+    row.setFloat("B", valueB);
   }
 
   void incrementSubjectNumber() {
