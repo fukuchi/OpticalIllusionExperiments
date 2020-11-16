@@ -1,4 +1,4 @@
-class KanizsaIllusion implements Illusion {
+class KanizsaShrinkageIllusion implements Illusion {
   final int maxValue = 10;
   int value;
   final int squareWidthA = 150;
@@ -9,7 +9,7 @@ class KanizsaIllusion implements Illusion {
   int occluderHeight;
   int mode;
 
-  KanizsaIllusion() {
+  KanizsaShrinkageIllusion() {
     setMode(0);
     randomize();
   }

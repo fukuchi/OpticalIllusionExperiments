@@ -2,8 +2,8 @@ boolean experimentMode = false;
 boolean showHashCode = false;
 boolean showParameters = true;
 
-KanizsaIllusion illusion;
-final String title="Kanizsa";
+KanizsaShrinkageIllusion illusion;
+final String title="KanizsaShrinkage";
 PGraphics canvas;
 Experiment experiment;
 
@@ -20,7 +20,7 @@ void setup() {
   canvas = createGraphics(590, 400);
   surface.setTitle(title);
 
-  illusion = new KanizsaIllusion();
+  illusion = new KanizsaShrinkageIllusion();
   experiment = new Experiment(title);
   experiment.setIllusion(illusion);
 }
