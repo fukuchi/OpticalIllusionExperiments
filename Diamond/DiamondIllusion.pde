@@ -62,7 +62,7 @@ class DiamondIllusion implements Illusion {
     pg.text("B", 0, 30 - pg.height / 2);
     pg.stroke(0);
     pg.noFill();
-    pg.rotate(HALF_PI / 2);
+    pg.rotate(HALF_PI / 4 + HALF_PI / 4 * (1 - mode));
     pg.rect(-widthB / 2, -widthB / 2, widthB, widthB);
     pg.popMatrix();
 

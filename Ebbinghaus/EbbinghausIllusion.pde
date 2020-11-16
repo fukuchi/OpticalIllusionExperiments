@@ -8,6 +8,7 @@ class EbbinghausIllusion implements Illusion {
   final int stimuliDistanceL = 120;
   final int stimuliDistanceS = 60;
   final int centerRadiusA = 60;
+  final int stimuliDisks = 8;
   int centerRadiusB;
   int mode;
 
@@ -55,14 +56,10 @@ class EbbinghausIllusion implements Illusion {
     pg.pushMatrix();
     pg.translate(pg.width / 3, pg.height / 2); 
     pg.ellipse(0, 0, centerRadiusA, centerRadiusA);
-    for (int i=0; i<8; i++) {
-      float x = cos(TWO_PI * i / 8 + 0.2) * stimuliDistanceL;
-      float y = sin(TWO_PI * i / 8 + 0.2) * stimuliDistanceL;
-      if (mode == 0) {
-        pg.ellipse(x, y, stimuliRadiusL, stimuliRadiusL);
-      } else {
-        pg.rect(x - stimuliWidthL / 2, y - stimuliWidthL / 2, stimuliWidthL, stimuliWidthL);
-      }
+    for (int i=0; i<stimuliDisks; i++) {
+      float x = cos(TWO_PI * i / stimuliDisks + 0.2) * stimuliDistanceL;
+      float y = sin(TWO_PI * i / stimuliDisks + 0.2) * stimuliDistanceL;
+      pg.ellipse(x, y, stimuliRadiusL, stimuliRadiusL);
     }
     pg.text("A", 0, pg.height / 2 - 20);
     pg.popMatrix();
@@ -70,14 +67,10 @@ class EbbinghausIllusion implements Illusion {
     pg.pushMatrix();
     pg.translate(pg.width * 4 / 5, pg.height / 2); 
     pg.ellipse(0, 0, centerRadiusB, centerRadiusB);
-    for (int i=0; i<8; i++) {
-      float x = cos(TWO_PI * i / 8 + 0.2) * stimuliDistanceS;
-      float y = sin(TWO_PI * i / 8 + 0.2) * stimuliDistanceS;
-      if (mode == 0) {
-        pg.ellipse(x, y, stimuliRadiusS, stimuliRadiusS);
-      } else {
-        pg.rect(x - stimuliWidthS / 2, y - stimuliWidthS / 2, stimuliWidthS, stimuliWidthS);
-      }
+    for (int i=0; i<stimuliDisks; i++) {
+      float x = cos(TWO_PI * i / stimuliDisks + 0.2) * stimuliDistanceS;
+      float y = sin(TWO_PI * i / stimuliDisks + 0.2) * stimuliDistanceS;
+      pg.ellipse(x, y, stimuliRadiusS, stimuliRadiusS);
     }
     pg.text("B", 0, pg.height / 2 - 20);
     pg.popMatrix();
