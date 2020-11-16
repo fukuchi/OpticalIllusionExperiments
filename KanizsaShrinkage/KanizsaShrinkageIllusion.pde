@@ -15,7 +15,7 @@ class KanizsaShrinkageIllusion implements Illusion {
   }
 
   void randomize() {
-    setValue(floor(random(-maxValue, maxValue)));
+    setValue(floor(random(-maxValue / 2, maxValue / 2)));
   }
 
   int getValue() {
