@@ -59,7 +59,11 @@ class EbbinghausIllusion implements Illusion {
     for (int i=0; i<stimuliDisks; i++) {
       float x = cos(TWO_PI * i / stimuliDisks + 0.2) * stimuliDistanceL;
       float y = sin(TWO_PI * i / stimuliDisks + 0.2) * stimuliDistanceL;
-      pg.ellipse(x, y, stimuliRadiusL, stimuliRadiusL);
+      if (mode == 0) {
+        pg.ellipse(x, y, stimuliRadiusL, stimuliRadiusL);
+      } else {
+        pg.ellipse(x, y, stimuliRadiusS, stimuliRadiusS);
+      }
     }
     pg.text("A", 0, pg.height / 2 - 20);
     pg.popMatrix();
