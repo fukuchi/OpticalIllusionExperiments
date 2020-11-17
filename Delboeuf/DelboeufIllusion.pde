@@ -64,9 +64,6 @@ class DelboeufIllusion implements Illusion {
     pg.text("B", pg.width * 5 / 7, pg.height / 2 - 50);
 
     pg.popMatrix();
-    pg.popStyle();
-    pg.endDraw();
-
     if (showHashCode) {
       String hash = String.format("%08x", String.format("%s-%02d%02d-meaningless-string", title, mode, value).hashCode());
       pg.textSize(12);
@@ -75,6 +72,8 @@ class DelboeufIllusion implements Illusion {
       pg.textAlign(LEFT, TOP);
       pg.text(hash, 0, 0);
     }
+    pg.popStyle();
+    pg.endDraw();
   }
 
   void drawParameters() {
