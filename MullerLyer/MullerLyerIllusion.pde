@@ -8,13 +8,12 @@ class MullerLyerIllusion implements Illusion {
   int mode;
 
   MullerLyerIllusion() {
-    setValue(floor(random(-maxValue, maxValue)));
     setMode(0);
     randomize();
   }
 
   void randomize() {
-    setValue(floor(random(-maxValue / 2, maxValue / 2)));
+    setValue(floor(random(-maxValue, maxValue)));
   }
 
   int getValue() {

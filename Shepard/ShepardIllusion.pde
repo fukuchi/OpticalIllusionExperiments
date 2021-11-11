@@ -24,7 +24,7 @@ class ShepardIllusion implements Illusion {
   }
 
   void randomize() {
-    setValue(floor(random(-maxValue / 2, maxValue / 2)));
+    setValue(floor(random(-maxValue, maxValue)));
   }
 
   int getValue() {

@@ -14,7 +14,7 @@ class HelmholtzIllusion implements Illusion {
   }
 
   void randomize() {
-    setValue(floor(random(-maxValue / 2, maxValue / 2)));
+    setValue(floor(random(-maxValue, maxValue)));
   }
 
   int getValue() {
@@ -50,9 +50,9 @@ class HelmholtzIllusion implements Illusion {
 
     pg.noStroke();
     pg.fill(0);
+    pg.rect(100, -shiftY, widthA, widthA);
     for (int i=0; i<barNum; i++) {
-      if (mode != 0 || i % 2 == 0) {
-        pg.rect(100, i * barWidth - shiftY, widthA, barWidth);
+      if (mode !=0 || i % 2 == 0) {
         pg.rect(pg.width - widthA - 100 + i * barWidth, (widthA - widthB) / 2 + shiftY, barWidth, widthB);
       }
     }
