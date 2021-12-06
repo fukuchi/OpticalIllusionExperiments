@@ -3,11 +3,10 @@ class JastrowIllusion implements Illusion {
   int value;
   final int arcRadius = 350;
   final int barWidth = 120;
-  final float startAngle = 240;
+  final int startAngle = 240;
   final int endAngleA = 290;
   int endAngleB;
-  final int lengthA = 350;
-  int lengthB;
+  int lengthA, lengthB;
   final float shiftAngle = -5;
   final float shiftX = 50;
   int mode;
@@ -29,7 +28,8 @@ class JastrowIllusion implements Illusion {
     if (v < -maxValue || v > maxValue) return;
     value = v;
     endAngleB = endAngleA + v;
-    lengthB = lengthA + v * 5;
+    lengthA = round((arcRadius + barWidth / 2) * radians(endAngleA - startAngle));
+    lengthB = round((arcRadius + barWidth / 2) * radians(endAngleB - startAngle));
   }
 
   int getMaxValue() {
@@ -116,6 +116,8 @@ class JastrowIllusion implements Illusion {
   }
 
   void drawBars(PGraphics pg) {
+
+
     pg.background(255);
     pg.pushStyle();
     pg.strokeWeight(2);
@@ -150,8 +152,8 @@ class JastrowIllusion implements Illusion {
     textAlign(LEFT, TOP);
     fill(0);
     stroke(0);
-    text("Angle A: " + endAngleA + " deg", 0, 0);
-    text("Angle B: " + endAngleB + " deg", 0, 20);
+    text(String.format("Angle A: %2d deg (%3d px)", endAngleA - startAngle, lengthA), 0, 0);
+    text(String.format("Angle B: %2d deg (%3d px)", endAngleB - startAngle, lengthB), 0, 20);
   }
 
   void recordCurrentValues(Experiment experiment) {
