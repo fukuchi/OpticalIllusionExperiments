@@ -56,7 +56,6 @@ class TriangleBisectionIllusion implements Illusion {
     pg.stroke(0);
     pg.strokeWeight(1);
     pg.noFill();
-    pg.rect(0, 0, pg.width - 1, pg.height - 1);
 
     pg.strokeWeight(2);
 
