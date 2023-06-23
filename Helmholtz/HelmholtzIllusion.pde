@@ -41,7 +41,7 @@ class HelmholtzIllusion implements Illusion {
 
   void draw(PGraphics pg) {
     pg.beginDraw();
-    pg.background(255);
+    pg.background(220);
     pg.pushStyle();
     pg.textAlign(CENTER, CENTER);
     pg.textSize(16);
@@ -51,9 +51,17 @@ class HelmholtzIllusion implements Illusion {
     pg.noStroke();
     pg.fill(0);
     pg.rect(100, -shiftY, widthA, widthA);
-    for (int i=0; i<barNum; i++) {
-      if (mode !=0 || i % 2 == 0) {
+    if (mode != 0) {
+      pg.rect(pg.width - widthA - 100, (widthA - widthB) / 2 + shiftY, widthA, widthB);
+    } else {
+      for (int i=0; i<barNum; i++) {
+        if ((i % 2) == 0) {
+          pg.fill(0);
+        } else {
+          pg.fill(255);
+        }
         pg.rect(pg.width - widthA - 100 + i * barWidth, (widthA - widthB) / 2 + shiftY, barWidth, widthB);
+        //pg.rect(pg.width - 150 - widthB / 2, shiftY + i * barWidth, widthB, barWidth);
       }
     }
     pg.text("A", 50, widthA / 2 - shiftY);
