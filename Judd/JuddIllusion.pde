@@ -4,8 +4,7 @@ class JuddIllusion implements Illusion {
   final int dotXStep = 2;
 
   final int arrowLength = 300;
-  final int wingHeight = 30;
-  int wingWidth;
+  final int wingWidth = 30;
   int mode;
 
   JuddIllusion() {
@@ -33,7 +32,6 @@ class JuddIllusion implements Illusion {
   void setMode(int mode) {
     if (mode >= 0 && mode < 2) {
       this.mode = mode;
-      wingWidth = (1 - mode) * wingHeight;
     }
   }
 
@@ -57,10 +55,15 @@ class JuddIllusion implements Illusion {
     int endPoint2 = endPoint1 + arrowLength;
     int dotX = endPoint1 + arrowLength / 2 + value * dotXStep;
     pg.line(endPoint1, 0, endPoint2, 0);
-    pg.line(endPoint1, 0, endPoint1 - wingWidth, -wingHeight);
-    pg.line(endPoint1, 0, endPoint1 - wingWidth, wingHeight);
-    pg.line(endPoint2, 0, endPoint2 - wingWidth, -wingHeight);
-    pg.line(endPoint2, 0, endPoint2 - wingWidth, wingHeight);
+    pg.line(endPoint1, 0, endPoint1 - wingWidth, -wingWidth);
+    pg.line(endPoint1, 0, endPoint1 - wingWidth, wingWidth);
+    if (mode == 0) {
+      pg.line(endPoint2, 0, endPoint2 - wingWidth, -wingWidth);
+      pg.line(endPoint2, 0, endPoint2 - wingWidth, wingWidth);
+    } else {
+      pg.line(endPoint2, 0, endPoint2 + wingWidth, -wingWidth);
+      pg.line(endPoint2, 0, endPoint2 + wingWidth, wingWidth);
+    }
     pg.line(dotX, -10, dotX, 10);
     pg.popMatrix();
 
