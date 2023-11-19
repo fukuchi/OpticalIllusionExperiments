@@ -52,10 +52,8 @@ class PonzoIllusion implements Illusion {
     pg.smooth();
 
     pg.strokeWeight(2);
-    pg.line(0, 0, pg.width, 0);
-    if (mode > 0) {
-      pg.line(0, 200, pg.width, 200);
-    } else {
+    if (mode == 0) {
+      pg.line(0, 0, pg.width, 0);
       pg.line(0, 0, cos(angle) * pg.width, sin(angle) * pg.width);
     }
 
