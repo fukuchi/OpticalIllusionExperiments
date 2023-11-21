@@ -69,6 +69,7 @@ class TriangleBisectionIllusion implements Illusion {
 
     pg.line(-dividerWidth / 2, triangleHeight / 2 + shift, dividerWidth / 2, triangleHeight / 2 + shift);
 
+    pg.popMatrix();
     if (showHashCode) {
       String hash = String.format("%08x", String.format("%s-%02d%02d-meaningless-string", title, mode, value).hashCode());
       pg.textSize(12);
@@ -78,7 +79,6 @@ class TriangleBisectionIllusion implements Illusion {
       pg.text(hash, 0, 0);
     }
 
-    pg.popMatrix();
     pg.popStyle();
     pg.endDraw();
   }
