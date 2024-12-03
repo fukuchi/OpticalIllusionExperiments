@@ -152,12 +152,12 @@ class JastrowIllusion implements Illusion {
     textAlign(LEFT, TOP);
     fill(0);
     stroke(0);
-    text(String.format("Angle A: %2d deg (%3d px)", endAngleA - startAngle, lengthA), 0, 0);
-    text(String.format("Angle B: %2d deg (%3d px)", endAngleB - startAngle, lengthB), 0, 20);
+    text(String.format("Angle A: %3d px (%2d deg)", lengthA, endAngleA - startAngle), 0, 0);
+    text(String.format("Angle B: %3d px (%2d deg)", lengthB, endAngleB - startAngle), 0, 20);
   }
 
   void recordCurrentValues(Experiment experiment) {
-    experiment.appendResult(mode + 1, endAngleA, endAngleB);
+    experiment.appendResult(mode + 1, endAngleA - startAngle, endAngleB - startAngle);
   }
 
   void keyPressed() {
