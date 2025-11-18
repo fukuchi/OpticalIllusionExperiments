@@ -1,6 +1,8 @@
 boolean experimentMode = false;
 boolean showHashCode = false;
-boolean showParameters = true;
+boolean showParameters = false;
+
+boolean clearBackground = false;
 
 MullerLyerIllusion illusion;
 final String title="Muller-Lyer";
@@ -26,8 +28,9 @@ void setup() {
 }
 
 void draw() {
-  if (showParameters || experimentMode) {
+  if (showParameters || experimentMode || clearBackground) {
     background(255);
+    clearBackground = false;
   }
   if (showParameters) {
     illusion.drawParameters();
@@ -56,6 +59,9 @@ void keyPressed() {
     canvas.save(filename);
   } else if (key == ' ' && experimentMode) {
     experiment.nextPhase();
+  } else if (key == 'p') {
+    showParameters = !showParameters;
+    clearBackground = true;
   } else {
     illusion.keyPressed();
   }
